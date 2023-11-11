@@ -62,9 +62,19 @@ public class Player {
     }
 
     //Proxima practica
-    public Directions move(Directions direction, Directions[] validMoves){
-        throw new UnsupportedOperationException();
+    public Directions move(Directions direction, ArrayList<Directions> validMoves){
+        int size = validMoves.size();
+        boolean contained = validMoves.contains(direction);
+
+        if (size > 0 && !contained){
+            Directions firsElement = validMoves.get(0);
+            return firsElement;
+        }
+        else{
+            return direction;
+        }
     }
+
 
     public float attack(){
         return strength+sumWeapons();
@@ -75,7 +85,20 @@ public class Player {
     }
 
     public void  receiveReward(){
-        throw new UnsupportedOperationException();
+       int wReward = Dice.weaponsReward();
+       int sReward = Dice.shieldsReward();
+
+       for(int i=1; i<=wReward; ++i){
+           Weapon wnew = newWeapon();
+           receiveWeapon(wnew);
+       }
+        for(int i=1; i<=sReward; ++i){
+            Shield snew = newShield();
+            receiveShield(snew);
+        }
+
+        int extraHealth = Dice.healthReward();
+        health += extraHealth;
     }
 
     public String toString(){
@@ -84,13 +107,32 @@ public class Player {
     }
 
     //Proxima practica
-    private void receiveWeapon(Weapon w){
-        throw new UnsupportedOperationException();
+    private void receiveWeapon(Weapon w) {
+        for (int i = 0; i < weapons.size(); ++i) {
+            Weapon wi = weapons.get(i);
+            boolean discard = wi.discard();
+
+            if (discard) {
+                weapons.remove(wi);
+            }
+        }
+        int size = weapons.size();
+        if (size < MAX_WEAPONS){ weapons.add(w);}
+
     }
 
     //Proxima practica
     private void receiveShield(Shield s){
-        throw new UnsupportedOperationException();
+        for (int i=0; i< shields.size();++i){
+            Shield si = shields.get(i);
+            boolean discard = si.discard();
+
+            if (discard){shields.remove(si);}
+
+        }
+        int size = shields.size();
+
+        if (size < MAX_SHIELDS){ shields.add(s);}
     }
 
     private Weapon newWeapon(){
@@ -145,7 +187,21 @@ public class Player {
 
     //Proxima practica
     private boolean manageHit(float receivedAttack){
-        throw new UnsupportedOperationException();
+        boolean lose = false;
+        float defense = defensiveEnergy();
+        if ( defense < receivedAttack){
+            gotWounded();
+            incConsecutiveHits();
+        }
+        else{
+            resetHits();
+        }
+
+        if(consecutiveHits == HITS2LOSE || dead()){
+            resetHits();
+            lose=true;
+        }
+        return lose;
     }
 
     private void resetHits(){
