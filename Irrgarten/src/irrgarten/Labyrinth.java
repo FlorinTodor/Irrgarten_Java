@@ -2,6 +2,10 @@ package irrgarten;
 
 import java.util.*;
 
+/**
+ *
+ * @author flo & gabi
+ */
 public class Labyrinth {
 
 	private Monster[][] monsters;
@@ -38,6 +42,7 @@ public class Labyrinth {
 				}
 			}
 	}
+
 	// Getter y Setter para la variable nRows
 	public int getNRows() {
 		return nRows;
@@ -74,13 +79,14 @@ public class Labyrinth {
 		this.exitCol = exitCol;
 	}
 
-
-
-	/*
-        SIGUIENTE PRACTICA
-         */
 	public void spreadPlayers(ArrayList<Player> players) {
-		throw new UnsupportedOperationException();
+		for(int i=0; i<players.size(); i++){
+			Player p = players.get(i);
+
+			int[] pos = randomEmptyPos();
+
+			putPlayer2D(-1,-1,pos[ROW], pos[COL], p);
+		}
 	}
 
 	public boolean haveAWinner() {
@@ -128,27 +134,66 @@ public class Labyrinth {
 		}
 	}
 
-	/*
-	SIGUIENTE PRACTICA
-	 */
 	public Monster putPlayer(Directions direction, Player player) {
-		throw new UnsupportedOperationException();
+		int oldRow = player.getRow();
+		int oldCol = player.getCol();
+
+		int[] newPos = dir2Pos(oldRow, oldCol, direction);
+
+		Monster monster = putPlayer2D(oldRow, oldCol, newPos[ROW], newPos[COL], player);
+
+		return monster;
 	}
 
-	/*
-	SIGUIENTE PRACTICA
-	 */
 
 	public void addBlock(Orientation orientation, int startRow, int startCol, int length) {
-		throw new UnsupportedOperationException();
+		int incRow;
+		int incCol;
+		if(orientation == Orientation.VERTICAL){
+			incRow = 1;
+			incCol = 0;
+		}
+		else{
+			incRow = 0;
+			incCol = 1;
+		}
+
+		int row = startRow;
+		int col = startCol;
+
+		while( (posOK(row,col)) && (emptyPos(row,col)) && (length > 0)){
+			labyrinth[row][col] = BLOCK_CHAR;
+
+			length -= 1;
+			row += incRow;
+			col += incCol;
+		}
 	}
 
 	/*
 	SIGUIENTE PRACTICA
 	 */
 
-	public Directions[] validMoves(int row, int col) {
-		throw new UnsupportedOperationException();
+	public ArrayList<Directions> validMoves(int row, int col) {
+		ArrayList<Directions> output = new ArrayList();
+
+		if(canStepOn(row+1,col)){
+			output.add(Directions.DOWN);
+		}
+
+		if(canStepOn(row-1,col)){
+			output.add(Directions.UP);
+		}
+
+		if(canStepOn(row, col+1)){
+			output.add(Directions.RIGHT);
+		}
+
+		if(canStepOn(row,col-1)){
+			output.add(Directions.LEFT);
+		}
+
+		return output;
 	}
 
 	private boolean posOK(int row, int col) {
@@ -258,10 +303,35 @@ public class Labyrinth {
 		// Si no se encuentra una posición vacía después de un número máximo de intentos, retorna null
 		return null;
 	}
-	/*
-	SIGUIENTE PRACTICA
-	 */
+
 	private Monster putPlayer2D(int oldRow, int oldCol, int row, int col, Player player) {
-		throw new UnsupportedOperationException();
+		Monster output = null;
+		if(canStepOn(row,col)){
+			if(posOK(oldRow,oldCol)){
+				Player p = players[oldRow][oldCol];
+
+				if(p == player){
+					updateOldPos(oldRow,oldCol);
+					players[row][col] = null;
+				}
+			}
+
+			boolean monsterPos = monsterPos(row,col);
+
+			if(monsterPos){
+				labyrinth[row][col] = COMBAT_CHAR;
+
+				output = monsters[row][col];
+			}
+			else{
+				char number = player.getNumber();
+				labyrinth[row][col] = number;
+			}
+
+			players[row][col] = player;
+			player.setPos(row,col);
+		}
+
+		return output;
 	}
 }

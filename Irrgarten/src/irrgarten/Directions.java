@@ -4,7 +4,7 @@ import javax.swing.text.AbstractDocument;
 
 /**
  *
- * @author flo
+ * @author flo & gabi
  */
 
   public enum Directions{LEFT,RIGHT,UP,DOWN};

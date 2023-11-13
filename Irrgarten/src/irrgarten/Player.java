@@ -2,6 +2,10 @@ package irrgarten;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author flo & gabi
+ */
 public class Player {
 
     private ArrayList<Weapon> weapons;
@@ -61,7 +65,6 @@ public class Player {
         return health <= 0;
     }
 
-    //Proxima practica
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
         int size = validMoves.size();
         boolean contained = validMoves.contains(direction);

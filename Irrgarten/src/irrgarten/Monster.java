@@ -1,5 +1,9 @@
 package irrgarten;
 
+/**
+ *
+ * @author flo & gabi
+ */
 public class Monster {
 
 	private static final int INITIAL_HEALTH = 5;

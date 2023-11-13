@@ -1,13 +1,8 @@
 package irrgarten;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
- * @author flo
+ * @author flo & gabi
  */
 public class Weapon {
     //"Esta clase representa las armas que utiliza el jugador en los ataques durante los combates."

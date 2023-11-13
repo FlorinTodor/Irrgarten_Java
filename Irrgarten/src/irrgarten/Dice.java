@@ -7,7 +7,7 @@ import java.util.Random;
 
 /**
  *
- * @author flo
+ * @author flo & gabi
  */
 public class Dice {
     /*

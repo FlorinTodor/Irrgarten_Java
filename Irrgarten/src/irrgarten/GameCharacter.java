@@ -6,7 +6,7 @@ package irrgarten;
 
 /**
  *
- * @author flo
+ * @author flo & gabi
  */
 public enum GameCharacter {PLAYER,MONSTER}
 

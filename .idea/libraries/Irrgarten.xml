@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Irrgarten">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Irrgarten/dist/Irrgarten.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
