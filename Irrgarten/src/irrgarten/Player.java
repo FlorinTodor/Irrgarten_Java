@@ -98,7 +98,7 @@ public class Player {
         }
 
         int extraHealth = Dice.healthReward();
-        health += extraHealth;
+        this.health += extraHealth;
     }
 
     public String toString(){
