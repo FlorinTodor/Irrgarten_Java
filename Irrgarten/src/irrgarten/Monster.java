@@ -49,8 +49,8 @@ public class Monster {
 	}
 
 	public String toString() {
-		return "Monster [name: " + name + ", intelligence: " + intelligence + ", strength: " + strength +
-				", health: " + health + ", row: " + row + ", col: " + col + "]";
+		return "name: " + name + ", intelligence: " + intelligence + ", strength: " + strength +
+				", health: " + health + ", row: " + row + ", col: " + col + "\n";
 	}
 
 	private void gotWounded() {

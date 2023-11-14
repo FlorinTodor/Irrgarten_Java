@@ -19,14 +19,15 @@ public class Game {
 	public Game(int nplayers) {
 		players = new ArrayList<Player>(nplayers);
 		for(int i=0; i< nplayers; ++i){
-			Player newPlayer = new Player((char) i, Dice.randomIntelligence(),Dice.randomStrength());
+			char number = Integer.toString(i).charAt(0);
+			Player newPlayer = new Player(number, Dice.randomIntelligence(),Dice.randomStrength());
 			players.add(newPlayer);
 		}
 		currentPlayerIndex = Dice.randomPos(nplayers);
 		currentPlayer = players.get(currentPlayerIndex);
-		monsters = new ArrayList<Monster>(5); //NO TENEMOS INFORMACIÓN AHORA MISMO
+		monsters = new ArrayList<Monster>(2); //NO TENEMOS INFORMACIÓN AHORA MISMO
 		log ="";
-		labyrinth = new Labyrinth(10,20,5,5);//ESTO HABRÁ QUE MODIFICARLO CON NUESTRO DISEÑO
+		labyrinth = new Labyrinth(7,7,3,3);//ESTO HABRÁ QUE MODIFICARLO CON NUESTRO DISEÑO
 		configureLabyrinth();
 		labyrinth.spreadPlayers(players);
 	}
@@ -77,41 +78,25 @@ public class Game {
 	}
 
 	private void configureLabyrinth() {
-		char[][] laberinto = {
-				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'M', 'X', 'M', 'X', 'X', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'X', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'X', 'M', 'X', 'X', 'X', 'X', 'M', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'X', 'X', 'M', 'E', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'M', 'X', 'X', 'X', 'M', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'X', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'X', 'X', 'M', 'X', 'X', 'M', 'X', 'X', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'X', 'M', 'X', 'X', 'X', 'X', 'M', 'X', 'M', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-				{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'}
-		};
+		// Configura el laberinto personalizado
+		// Nota: Estoy asumiendo que las dimensiones son 7x7
+		labyrinth.addBlock(Orientation.HORIZONTAL, 0, 0, 7); // Fila 0
+		labyrinth.addBlock(Orientation.HORIZONTAL, 6, 0, 7); // Fila 6
+		labyrinth.addBlock(Orientation.VERTICAL, 1, 0, 1);   // Columna 0
+		labyrinth.addBlock(Orientation.VERTICAL, 5, 6, 1);   // Columna 6
+		labyrinth.addBlock(Orientation.HORIZONTAL, 3, 2, 1);  // Fila 3
+		labyrinth.addBlock(Orientation.VERTICAL, 2, 4, 1);    // Columna 4
 
-		// Configura el laberinto
-		for (int row = 0; row < labyrinth.getNRows(); row++) {
-			for (int col = 0; col < labyrinth.getNCols(); col++) {
-				if (laberinto[row][col] == 'M') {
-					// Agrega un monstruo en la posición (row, col)
-					labyrinth.addMonster(row, col, new Monster("monstruo", Dice.randomIntelligence(), Dice.randomStrength()));
-				} else if (laberinto[row][col] == 'E') {
-					// Establece la casilla de salida en la posición (row, col)
-					labyrinth.setExitRow(row);
-					labyrinth.setExitCol(col);
-				} else if (laberinto[row][col] == 'X') {
-					// Agrega un bloque en la posición (row, col) con orientación aleatoria entre vertical y horizontal
+		Monster ogre = new Monster("Ogre", Dice.randomIntelligence(), Dice.randomStrength());
+		Monster vampire = new Monster("Vampire", Dice.randomIntelligence(), Dice.randomStrength());
+		monsters.add(ogre);
+		monsters.add(vampire);
 
-					int orientation = Dice.randomPos(2); // 0 para horizontal, 1 para vertical
-					if (orientation == 0) {
-						//labyrinth.addBlock(Orientation.HORIZONTAL, row, col, 1);
-					} else {
-						//labyrinth.addBlock(Orientation.VERTICAL, row, col, 1);
-					}
-				}
-			}
-		}
+		labyrinth.addMonster(1, 1, ogre);
+		labyrinth.addMonster(5, 3, vampire);
+
+		labyrinth.setExitRow(2);
+		labyrinth.setExitCol(2);
 	}
 
 	private void nextPlayer() {

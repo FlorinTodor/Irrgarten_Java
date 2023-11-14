@@ -14,7 +14,6 @@ public class Player {
     private static final int MAX_SHIELDS = 3;
     private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
-
     private String name;
     private char number;
     private float intelligence;
@@ -24,10 +23,9 @@ public class Player {
     private int col;
     private int consecutiveHits = 0;
 
-
     public Player(char number, float intelligence, float strength)  {
         this.number = number;
-        this.name = "Player # " + number;
+        this.name = "Player # " + this.number;
         this.intelligence = intelligence;
         this.strength = strength;
         this.health = INITIAL_HEALTH;
@@ -78,7 +76,6 @@ public class Player {
         }
     }
 
-
     public float attack(){
         return strength+sumWeapons();
     }
@@ -105,8 +102,8 @@ public class Player {
     }
 
     public String toString(){
-        return "Player [name: " + name +  ", intelligence: " + intelligence +  ", strength: " + strength +
-                ", health: " + health + ", row: " + row + ", col: " + col + ", weapons: " + weapons.toString() + ", shields: " +  shields.toString()+"]";
+        return "name: " + name +  ", intelligence: " + intelligence +  ", strength: " + strength +
+                ", health: " + health + ", row: " + row + ", col: " + col + ", weapons: " + weapons.toString() + ", shields: " +  shields.toString()+"\n";
     }
 
     //Proxima practica

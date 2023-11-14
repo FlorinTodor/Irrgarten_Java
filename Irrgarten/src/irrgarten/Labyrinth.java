@@ -15,7 +15,7 @@ public class Labyrinth {
 	private static final char EMPTY_CHAR = '-';
 	private static final char MONSTER_CHAR = 'M';
 	private static final char COMBAT_CHAR = 'C';
-	private static final char EXIT_CHAR = 'C';
+	private static final char EXIT_CHAR = 'E';
 	private static final int ROW = 0;
 	private static final int COL = 1;
 	private int nRows;
@@ -105,12 +105,12 @@ public class Labyrinth {
 			for (int j = 0; j < nCols; j++) {
 				if (players[i][j] != null) {
 					//Mostramos si hay un jugador
-					result.append(players[i][j].toString());
+					result.append(players[i][j].getNumber());
 				} else if (monsters[i][j] != null) {
-					//Mostramos si hay un monster
-					result.append(monsters[i][j].toString());
+					//Mostramos si hay un monsterS
+					result.append(MONSTER_CHAR);
 				} else {
-					//MOstramos si hay un bloque/muro o un combate (jugador y monstruo a la vez)
+					//Mostramos si hay un bloque/muro o un combate (jugador y monstruo a la vez)
 					result.append(labyrinth[i][j]);
 				}
 			}
@@ -288,7 +288,7 @@ public class Labyrinth {
 			int randomCol = Dice.randomPos(nCols); // Genera una columna aleatoria
 
 			//Comprobamos que sea una posición vacía
-			if (emptyPos(randomRow, randomCol)) {
+			if (emptyPos(randomRow, randomCol) && randomRow != exitRow && randomCol != exitCol) {
 				position[0] = randomRow;
 				position[1] = randomCol;
 				return position; // Devuelve la posición vacía

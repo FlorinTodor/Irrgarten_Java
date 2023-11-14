@@ -76,5 +76,4 @@ public class TextUI {
         System.out.println(gameState.getLog());
 
     }
-
 }
