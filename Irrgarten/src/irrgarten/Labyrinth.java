@@ -98,23 +98,12 @@ public class Labyrinth {
 	Debemos de tener en cuenta que en una misma casilla no podemos tener objetos diferentes.
 	 */
 	public String toString() {
-		//StringBuilder para poder modificar su tamaño y contenido
-
-		StringBuilder result = new StringBuilder();
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nCols; j++) {
-				if (players[i][j] != null) {
-					//Mostramos si hay un jugador
-					result.append(players[i][j].getNumber());
-				} else if (monsters[i][j] != null) {
-					//Mostramos si hay un monsterS
-					result.append(MONSTER_CHAR);
-				} else {
-					//Mostramos si hay un bloque/muro o un combate (jugador y monstruo a la vez)
-					result.append(labyrinth[i][j]);
-				}
+		String laberinto = "";
+		for (int i=0; i< nRows; ++i){
+			for (int j=0; j< nCols; ++j){
+				laberinto += labyrinth[i][j] + " ";
 			}
-			result.append(System.lineSeparator()); // Agrega un salto de línea al final de cada fila
+			laberinto += "\n";
 		}
 		return result.toString();
 	}

@@ -27,7 +27,6 @@ public class Dice {
     /*
     METODOS
     */
-  
 
     // Método para generar un número de fila o columna aleatoria entre 0 y max
     //usamos el +1 debido a que se genera aleatoriamente desde 0 hasta n-1
