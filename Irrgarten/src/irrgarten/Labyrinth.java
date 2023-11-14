@@ -35,6 +35,7 @@ public class Labyrinth {
 			// INICIALIZAMOS TODAS LAS CASILLAS
 			for(int i=0; i< nRows; ++i){
 				for(int j=0; j< nCols; ++j){
+
 					labyrinth[i][j]= EMPTY_CHAR;
 					monsters[i][j]= null;
 					players[i][j]= null;
@@ -101,7 +102,12 @@ public class Labyrinth {
 		String laberinto = "";
 		for (int i=0; i< nRows; ++i){
 			for (int j=0; j< nCols; ++j){
-				laberinto += labyrinth[i][j] + " ";
+				if(i == exitRow && j == exitCol){
+					laberinto += EXIT_CHAR + " ";
+				}
+				else{
+					laberinto += labyrinth[i][j] + " ";
+				}
 			}
 			laberinto += "\n";
 		}
