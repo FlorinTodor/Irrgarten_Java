@@ -93,11 +93,14 @@ public class Game {
 
 		Monster ogre = new Monster("Ogre", Dice.randomIntelligence(), Dice.randomStrength());
 		Monster vampire = new Monster("Vampire", Dice.randomIntelligence(), Dice.randomStrength());
+		Monster demon = new Monster("Demon", Dice.randomIntelligence(), Dice.randomStrength());
 		monsters.add(ogre);
 		monsters.add(vampire);
+		monsters.add(demon);
 
 		labyrinth.addMonster(1, 1, ogre);
 		labyrinth.addMonster(5, 3, vampire);
+		labyrinth.addMonster(2,5,demon);
 
 		labyrinth.setExitRow(2);
 		labyrinth.setExitCol(2);
