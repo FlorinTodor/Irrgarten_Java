@@ -80,10 +80,14 @@ public class Game {
 	private void configureLabyrinth() {
 		// Configura el laberinto personalizado
 		// Nota: Estoy asumiendo que las dimensiones son 7x7
-		labyrinth.addBlock(Orientation.HORIZONTAL, 0, 0, 7); // Fila 0
-		labyrinth.addBlock(Orientation.HORIZONTAL, 6, 0, 7); // Fila 6
+		labyrinth.addBlock(Orientation.HORIZONTAL, 0, 0, 2); // Fila 0
+		labyrinth.addBlock(Orientation.HORIZONTAL, 1, 3, 3); // Fila 1
+		labyrinth.addBlock(Orientation.HORIZONTAL, 3,1,3); //Fila 4
+		labyrinth.addBlock(Orientation.VERTICAL, 4,1,1); //Fila 4
+		labyrinth.addBlock(Orientation.HORIZONTAL, 6, 0, 2); // Fila 6
 		labyrinth.addBlock(Orientation.VERTICAL, 1, 0, 1);   // Columna 0
-		labyrinth.addBlock(Orientation.VERTICAL, 5, 6, 1);   // Columna 6
+		labyrinth.addBlock(Orientation.VERTICAL, 5, 6, 2);   // Columna 6
+		labyrinth.addBlock(Orientation.VERTICAL, 4, 4, 2);   // Columna 4
 		labyrinth.addBlock(Orientation.HORIZONTAL, 3, 2, 1);  // Fila 3
 		labyrinth.addBlock(Orientation.VERTICAL, 2, 4, 1);    // Columna 4
 
