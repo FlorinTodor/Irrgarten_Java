@@ -236,7 +236,7 @@ public class Labyrinth {
 	private void updateOldPos(int row, int col) {
 
 		if (posOK(row, col)) {
-			if (labyrinth[row][col] == COMBAT_CHAR) {
+			if (combatPos(row,col)) {
 				// Si el estado de la casilla era de combate, cambia a estado de monstruo
 				labyrinth[row][col] = MONSTER_CHAR;
 			} else {
@@ -302,7 +302,7 @@ public class Labyrinth {
 
 				if(p == player){
 					updateOldPos(oldRow,oldCol);
-					players[row][col] = null;
+					players[oldRow][oldCol] = null;
 				}
 			}
 

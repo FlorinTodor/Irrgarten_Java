@@ -40,6 +40,7 @@ public class Game {
 	}
 
 	public boolean nextStep(Directions preferredDirection) {
+		log = "";
 		boolean dead = currentPlayer.dead();
 
 		if(!dead){
