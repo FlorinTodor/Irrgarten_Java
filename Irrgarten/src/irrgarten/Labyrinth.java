@@ -105,7 +105,7 @@ public class Labyrinth {
 			}
 			laberinto += "\n";
 		}
-		return result.toString();
+		return laberinto;
 	}
 
 	public void addMonster(int row, int col, Monster monster) {
