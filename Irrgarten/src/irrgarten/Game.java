@@ -73,7 +73,7 @@ public class Game {
 	}
 
 	public GameState getGameState() {
-		GameState game = new GameState(labyrinth.toString(),players.toString(),monsters.toString(),currentPlayer.getNumber(),finished(),log);
+		GameState game = new GameState(labyrinth.toString(),players.toString(),monsters.toString(),Character.getNumericValue(currentPlayer.getNumber()),finished(),log);
 		return game;
 	}
 
