@@ -86,7 +86,7 @@ public class Labyrinth {
 
 			int[] pos = randomEmptyPos();
 
-			putPlayer2D(-1,-1,pos[ROW], pos[COL], p);
+			putPlayer2D(-1,-1, pos[ROW], pos[COL], p);
 		}
 	}
 
@@ -165,7 +165,7 @@ public class Labyrinth {
 	}
 
 	public ArrayList<Directions> validMoves(int row, int col) {
-		ArrayList<Directions> output = new ArrayList();
+		ArrayList<Directions> output = new ArrayList<Directions>();
 
 		if(canStepOn(row+1,col)){
 			output.add(Directions.DOWN);
@@ -207,7 +207,7 @@ public class Labyrinth {
 
 		if (posOK(row, col)) {
 			//COMPROBAMOS QUE ÚNICAMENTE SE ENCUENTRA UN MONSTER
-			return monsters[row][col] != null && players[row][col] == null && labyrinth[row][col] == EMPTY_CHAR;
+			return monsters[row][col] != null && players[row][col] == null;
 		}
 		return false;
 

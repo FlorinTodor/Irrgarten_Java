@@ -40,7 +40,7 @@ public class Game {
 	}
 
 	public boolean nextStep(Directions preferredDirection) {
-		log = "";
+		this.log = "";
 		boolean dead = currentPlayer.dead();
 
 		if(!dead){
@@ -125,7 +125,9 @@ public class Game {
 
 		ArrayList<Directions> validMoves = labyrinth.validMoves(currentRow,currentCol);
 
-        return currentPlayer.move(preferredDirection, validMoves);
+		Directions output = currentPlayer.move(preferredDirection,validMoves);
+
+        return output;
 	}
 
 	private GameCharacter combat(Monster monster) {
