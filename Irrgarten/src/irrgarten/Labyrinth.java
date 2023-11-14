@@ -145,7 +145,6 @@ public class Labyrinth {
 		return monster;
 	}
 
-
 	public void addBlock(Orientation orientation, int startRow, int startCol, int length) {
 		int incRow;
 		int incCol;
@@ -169,10 +168,6 @@ public class Labyrinth {
 			col += incCol;
 		}
 	}
-
-	/*
-	SIGUIENTE PRACTICA
-	 */
 
 	public ArrayList<Directions> validMoves(int row, int col) {
 		ArrayList<Directions> output = new ArrayList();
@@ -320,7 +315,6 @@ public class Labyrinth {
 
 			if(monsterPos){
 				labyrinth[row][col] = COMBAT_CHAR;
-
 				output = monsters[row][col];
 			}
 			else{
