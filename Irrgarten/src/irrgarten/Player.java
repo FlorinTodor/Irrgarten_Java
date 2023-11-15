@@ -88,11 +88,11 @@ public class Player {
        int wReward = Dice.weaponsReward();
        int sReward = Dice.shieldsReward();
 
-       for(int i=1; i<=wReward; ++i){
+       for(int i=0; i<wReward; ++i){
            Weapon wnew = newWeapon();
            receiveWeapon(wnew);
        }
-        for(int i=1; i<=sReward; ++i){
+        for(int i=0; i<sReward; ++i){
             Shield snew = newShield();
             receiveShield(snew);
         }
