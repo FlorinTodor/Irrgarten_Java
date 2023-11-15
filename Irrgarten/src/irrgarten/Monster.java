@@ -50,8 +50,8 @@ public class Monster {
 	}
 
 	public String toString() {
-		return "name: " + name + ", intelligence: " + intelligence + ", strength: " + strength +
-				", health: " + health + ", row: " + row + ", col: " + col + "\n";
+		return "Name: " + name + ", Intelligence: " + intelligence + ", Strength: " + strength +
+				", Health: " + health + ", Row: " + row + ", Col: " + col + "\n";
 	}
 
 	private void gotWounded() {

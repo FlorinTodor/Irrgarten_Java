@@ -25,7 +25,7 @@ public class Player {
 
     public Player(char number, float intelligence, float strength)  {
         this.number = number;
-        this.name = "Player # " + this.number;
+        this.name = "Player #" + this.number;
         this.intelligence = intelligence;
         this.strength = strength;
         this.health = INITIAL_HEALTH;
@@ -164,7 +164,7 @@ public class Player {
     }
 
     private float sumWeapons(){
-        float sum=0;
+        float sum=0.0f;
         for(Weapon weapon : weapons) {
             sum += weapon.attack();
         }
@@ -173,7 +173,7 @@ public class Player {
     }
 
     private float sumShields(){
-        float sum=0;
+        float sum=0.0f;
         for(Shield shield : shields){
             sum += shield.protect();
         }

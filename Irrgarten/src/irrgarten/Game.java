@@ -165,7 +165,6 @@ public class Game {
 
 			lose = currentPlayer.defend(monsterAttack);
 
-
 			if(!lose){
 				playerAttack = currentPlayer.attack();
 				winner = GameCharacter.PLAYER;
