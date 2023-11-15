@@ -77,7 +77,7 @@ public class Player {
     }
 
     public float attack(){
-        return strength+sumWeapons();
+        return (strength+sumWeapons());
     }
 
     public boolean defend(float receivedAttack){
