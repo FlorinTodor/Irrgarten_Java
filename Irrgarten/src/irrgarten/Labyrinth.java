@@ -35,11 +35,9 @@ public class Labyrinth {
 			// INICIALIZAMOS TODAS LAS CASILLAS
 			for(int i=0; i< nRows; ++i){
 				for(int j=0; j< nCols; ++j){
-
 					labyrinth[i][j]= EMPTY_CHAR;
 					monsters[i][j]= null;
 					players[i][j]= null;
-
 				}
 			}
 	}

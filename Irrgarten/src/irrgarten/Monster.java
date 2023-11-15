@@ -16,13 +16,14 @@ public class Monster {
 
 	public Monster(String name, float intelligence, float strength) {
 		this.name = name;
+		this.health = INITIAL_HEALTH;
 		this.intelligence = intelligence;
 		this.strength = strength;
 	}
 
 	public boolean dead() {
 		//Si la salud del monstruo es menor o igual que 0, es que esta muerto
-		return health <= 0;
+		return health <= 0.0f;
 	}
 
 	public float attack() {

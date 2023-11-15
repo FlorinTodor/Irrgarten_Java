@@ -66,14 +66,13 @@ public class TextUI {
         // Mostrar información del jugador actual
         System.out.println("\nTurno del Jugador: " + gameState.getCurrentPlayer());
 
-        // Mostrar si hay un ganador
-        if (gameState.getWinner()) {
-            System.out.println("¡Felicidades! ¡Has ganado!");
-        }
-
         // Mostrar el registro (log) del juego
         System.out.println("\nRegistro del Juego:");
         System.out.println(gameState.getLog());
 
+        // Mostrar si hay un ganador
+        if (gameState.getWinner()) {
+            System.out.println("¡Felicidades! ¡Has ganado!");
+        }
     }
 }

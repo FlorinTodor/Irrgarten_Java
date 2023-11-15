@@ -25,7 +25,7 @@ public class Game {
 		}
 		currentPlayerIndex = Dice.randomPos(nplayers);
 		currentPlayer = players.get(currentPlayerIndex);
-		monsters = new ArrayList<Monster>(3); //NO TENEMOS INFORMACIÓN AHORA MISMO
+		monsters = new ArrayList<Monster>(5); //NO TENEMOS INFORMACIÓN AHORA MISMO
 		log ="";
 		labyrinth = new Labyrinth(9,15,7,15);//ESTO HABRÁ QUE MODIFICARLO CON NUESTRO DISEÑO
 		configureLabyrinth();
