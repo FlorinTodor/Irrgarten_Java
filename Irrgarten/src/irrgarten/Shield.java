@@ -32,7 +32,7 @@ public class Shield {
     
     public String toString(){
         
-        return "S[" + protection+ "," + uses + "]";
+        return "S[Protection: " + protection+ ",Uses: " + uses + "]";
     }
     
     public boolean discard(){

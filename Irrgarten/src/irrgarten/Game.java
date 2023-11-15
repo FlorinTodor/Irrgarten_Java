@@ -25,9 +25,9 @@ public class Game {
 		}
 		currentPlayerIndex = Dice.randomPos(nplayers);
 		currentPlayer = players.get(currentPlayerIndex);
-		monsters = new ArrayList<Monster>(2); //NO TENEMOS INFORMACIÓN AHORA MISMO
+		monsters = new ArrayList<Monster>(3); //NO TENEMOS INFORMACIÓN AHORA MISMO
 		log ="";
-		labyrinth = new Labyrinth(7,7,3,3);//ESTO HABRÁ QUE MODIFICARLO CON NUESTRO DISEÑO
+		labyrinth = new Labyrinth(9,15,7,15);//ESTO HABRÁ QUE MODIFICARLO CON NUESTRO DISEÑO
 		configureLabyrinth();
 		labyrinth.spreadPlayers(players);
 	}
@@ -80,31 +80,51 @@ public class Game {
 
 	private void configureLabyrinth() {
 		// Configura el laberinto personalizado
-		// Nota: Estoy asumiendo que las dimensiones son 7x7
-		labyrinth.addBlock(Orientation.HORIZONTAL, 0, 0, 2); // Fila 0
-		labyrinth.addBlock(Orientation.HORIZONTAL, 1, 3, 3); // Fila 1
-		labyrinth.addBlock(Orientation.HORIZONTAL, 3,1,3); //Fila 4
-		labyrinth.addBlock(Orientation.VERTICAL, 4,1,1); //Fila 4
-		labyrinth.addBlock(Orientation.HORIZONTAL, 6, 0, 2); // Fila 6
-		labyrinth.addBlock(Orientation.VERTICAL, 1, 0, 1);   // Columna 0
-		labyrinth.addBlock(Orientation.VERTICAL, 5, 6, 2);   // Columna 6
-		labyrinth.addBlock(Orientation.VERTICAL, 4, 4, 2);   // Columna 4
-		labyrinth.addBlock(Orientation.HORIZONTAL, 3, 2, 1);  // Fila 3
-		labyrinth.addBlock(Orientation.VERTICAL, 2, 4, 1);    // Columna 4
+		// Nota: Estoy asumiendo que las dimensiones son 8x15
+		// Area
+		labyrinth.addBlock(Orientation.HORIZONTAL, 0, 0, 15); // Fila 0
+		labyrinth.addBlock(Orientation.VERTICAL,1, 0, 7); // Columna 0
+		labyrinth.addBlock(Orientation.HORIZONTAL, 8, 0, 15); // Fila 7
+		labyrinth.addBlock(Orientation.VERTICAL,1, 14, 6); // Columna 15
+
+		// Bloques internos
+		labyrinth.addBlock(Orientation.HORIZONTAL,2, 2, 3);
+		labyrinth.addBlock(Orientation.HORIZONTAL,2, 8, 2);
+		labyrinth.addBlock(Orientation.HORIZONTAL,2, 11, 2);
+		labyrinth.addBlock(Orientation.HORIZONTAL,3, 9, 1);
+		labyrinth.addBlock(Orientation.VERTICAL,3, 12, 2);
+		labyrinth.addBlock(Orientation.VERTICAL,4, 11, 1);
+		labyrinth.addBlock(Orientation.VERTICAL,4, 13, 1);
+		labyrinth.addBlock(Orientation.VERTICAL,4, 5, 1);
+		labyrinth.addBlock(Orientation.HORIZONTAL,4, 1, 3);
+		labyrinth.addBlock(Orientation.HORIZONTAL,5, 3, 1);
+		labyrinth.addBlock(Orientation.HORIZONTAL,6, 2, 2);
+		labyrinth.addBlock(Orientation.HORIZONTAL,6, 5, 5);
+		labyrinth.addBlock(Orientation.HORIZONTAL,6, 11, 3);
+		labyrinth.addBlock(Orientation.HORIZONTAL,7, 7, 1);
+		labyrinth.addBlock(Orientation.VERTICAL,2, 6, 3);
+		labyrinth.addBlock(Orientation.HORIZONTAL,4, 7, 3);
+
 
 		Monster ogre = new Monster("Ogre", Dice.randomIntelligence(), Dice.randomStrength());
 		Monster vampire = new Monster("Vampire", Dice.randomIntelligence(), Dice.randomStrength());
 		Monster demon = new Monster("Demon", Dice.randomIntelligence(), Dice.randomStrength());
+		Monster dragon = new Monster("Dragon", Dice.randomIntelligence(), Dice.randomStrength());
+		Monster zombie = new Monster("Zombie", Dice.randomIntelligence(), Dice.randomStrength());
 		monsters.add(ogre);
 		monsters.add(vampire);
 		monsters.add(demon);
+		monsters.add(dragon);
+		monsters.add(zombie);
 
-		labyrinth.addMonster(1, 1, ogre);
-		labyrinth.addMonster(5, 3, vampire);
+		labyrinth.addMonster(3, 2, ogre);
+		labyrinth.addMonster(2, 10, vampire);
 		labyrinth.addMonster(2,5,demon);
+		labyrinth.addMonster(5,8,dragon);
+		labyrinth.addMonster(7,12,zombie);
 
-		labyrinth.setExitRow(2);
-		labyrinth.setExitCol(2);
+		labyrinth.setExitRow(7);
+		labyrinth.setExitCol(14);
 	}
 
 	private void nextPlayer() {
@@ -140,7 +160,6 @@ public class Game {
 
 		while((!lose) && (rounds < MAX_ROUNDS)){
 			winner = GameCharacter.MONSTER;
-			rounds++;
 
 			float monsterAttack = monster.attack();
 
@@ -151,6 +170,8 @@ public class Game {
 				winner = GameCharacter.PLAYER;
 				lose = monster.defend(playerAttack);
 			}
+
+			rounds++;
 		}
 
 		logRounds(rounds, MAX_ROUNDS);

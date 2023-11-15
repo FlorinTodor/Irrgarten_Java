@@ -102,8 +102,8 @@ public class Player {
     }
 
     public String toString(){
-        return "name: " + name +  ", intelligence: " + intelligence +  ", strength: " + strength +
-                ", health: " + health + ", row: " + row + ", col: " + col + ", weapons: " + weapons.toString() + ", shields: " +  shields.toString()+"\n";
+        return "Name: " + name +  ", Intelligence: " + intelligence +  ", Strength: " + strength +
+                ", Health: " + health + ", Row: " + row + ", Col: " + col + ", Weapons: " + weapons.toString() + ", Shields: " +  shields.toString()+"\n";
     }
 
     //Proxima practica
