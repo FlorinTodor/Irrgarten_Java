@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package irrgarten;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -113,5 +114,15 @@ public class Dice {
             return generator.nextFloat() > probabilidad;
         }
         
+    }
+
+    public static Directions nextStep(Directions preference, ArrayList<Directions> validMoves, float intelligence){
+        if(randomIntelligence() < intelligence){
+            return preference;
+        }
+        else{
+            int randomIndex = randomPos(validMoves.size());
+            return validMoves.get(randomIndex);
+        }
     }
 }

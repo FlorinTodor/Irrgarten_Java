@@ -31,7 +31,7 @@ public class Monster extends LabyrinthCharacter {
 	}
 
 	public String toString() {
-		return "Name: " + name + ", Intelligence: " + intelligence + ", Strength: " + strength +
-				", Health: " + health + ", Row: " + row + ", Col: " + col + "\n";
+		return "Name: " + getName() + ", Intelligence: " + getIntelligence() + ", Strength: " + getStrength() +
+				", Health: " + getHealth() + ", Row: " + getRow() + ", Col: " + getCol() + "\n";
 	}
 }

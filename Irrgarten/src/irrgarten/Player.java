@@ -6,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author flo & gabi
  */
-public class Player {
+public class Player extends LabyrinthCharacter{
 
     WeaponCardDeck weaponCardDeck = new WeaponCardDeck();
     ShieldCardDeck shieldCardDeck = new ShieldCardDeck();
@@ -49,14 +49,6 @@ public class Player {
         shields.clear();
         setHealth(INITIAL_HEALTH);
         consecutiveHits = 0;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
     }
 
     public char getNumber() {
@@ -227,10 +219,4 @@ public class Player {
     private void incConsecutiveHits(){
         consecutiveHits++;
     }
-
-
-
-
-
-
 }
