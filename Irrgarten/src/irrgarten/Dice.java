@@ -16,7 +16,7 @@ public class Dice {
     private static final int MAX_USES = 5; //(número máximo de usos de armas y escudos)
     private static final float MAX_INTELLIGENCE = 10.0f ; //(valor máximo para la inteligencia de jugadores y monstruos)
     private static final float MAX_STRENGTH = 10.0f ; //(valor máximo para la fuerza de jugadores y monstruos)
-    private static final double RESURRECT_PROB = 0.3; // (probabilidad de que un jugador sea resucitado en cada turno)
+    private static final double RESURRECT_PROB = 0.3f; // (probabilidad de que un jugador sea resucitado en cada turno)
     private static final int WEAPONS_REWARD = 2; // (numero máximo de armas recibidas al ganar un combate)
     private static final int SHIELDS_REWARD = 3; // (numero máximo de escudos recibidos al ganar un combate)
     private static final int HEALTH_REWARD = 5; // (numero máximo de unidades de salud recibidas al ganar un combate)

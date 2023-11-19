@@ -8,37 +8,46 @@ import java.util.ArrayList;
  */
 public class Player {
 
+    WeaponCardDeck weaponCardDeck = new WeaponCardDeck();
+    ShieldCardDeck shieldCardDeck = new ShieldCardDeck();
     private ArrayList<Weapon> weapons;
     private ArrayList<Shield> shields;
     private static final int MAX_WEAPONS = 5;
     private static final int MAX_SHIELDS = 3;
     private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
-    private String name;
+
     private char number;
-    private float intelligence;
-    private float strength;
-    private float health;
-    private int row;
-    private int col;
+
     private int consecutiveHits = 0;
 
     public Player(char number, float intelligence, float strength)  {
+        super("Player #" + number,intelligence,strength,INITIAL_HEALTH);
         this.number = number;
-        this.name = "Player #" + this.number;
-        this.intelligence = intelligence;
-        this.strength = strength;
-        this.health = INITIAL_HEALTH;
         weapons = new ArrayList<Weapon>(MAX_WEAPONS);
         shields = new ArrayList<Shield>(MAX_SHIELDS);
-        row = 0;
-        col = 0;
+        setRow(0);
+        setCol(0);
+
+    }
+
+    public Player(Player other) {
+        super(other.getName(),other.getIntelligence(),other.getStrength(),other.getHealth());
+        this.number = other.number;
+
+        this.weapons = new ArrayList<>(other.weapons);  // Copia profunda de la lista de armas
+        this.shields = new ArrayList<>(other.shields);  // Copia profunda de la lista de escudos
+        setRow(other.getRow());
+        setCol(other.getCol());
+        // Puedes necesitar realizar copias profundas de las barajas de cartas si es necesario
+        this.weaponCardDeck = other.weaponCardDeck;
+        this.shieldCardDeck = other.shieldCardDeck;
     }
 
     public void resurrect(){
         weapons.clear();
         shields.clear();
-        health = INITIAL_HEALTH;
+        setHealth(INITIAL_HEALTH);
         consecutiveHits = 0;
     }
 
@@ -54,14 +63,18 @@ public class Player {
         return number;
     }
 
-    public void setPos(int row, int col){
-        this.row = row;
-        this.col = col;
-    }
+    public int getConsecutiveHits() { return consecutiveHits;}
 
-    public boolean dead(){
-        return health <= 0.0f;
-    }
+    public void setConsecutiveHits(int consecutiveHits) { this.consecutiveHits = consecutiveHits;}
+
+    public ArrayList<Weapon> getWeapons() { return new ArrayList<>(weapons);}
+
+    public void setWeapons(ArrayList<Weapon> weapons){ this.weapons = new ArrayList<>(weapons);}
+
+    public ArrayList<Shield> getShields() { return new ArrayList<>(shields);}
+
+    public void setShields(ArrayList<Shield> weapons){ this.shields = new ArrayList<>(shields);}
+
 
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
         int size = validMoves.size();
@@ -77,7 +90,7 @@ public class Player {
     }
 
     public float attack(){
-        return (strength+sumWeapons());
+        return (getStrength()+sumWeapons());
     }
 
     public boolean defend(float receivedAttack){
@@ -98,12 +111,15 @@ public class Player {
         }
 
         int extraHealth = Dice.healthReward();
-        this.health += extraHealth;
+        float vida = getHealth();
+        vida += extraHealth;
+        setHealth(vida);
+
     }
 
     public String toString(){
-        return "Name: " + name +  ", Intelligence: " + intelligence +  ", Strength: " + strength +
-                ", Health: " + health + ", Row: " + row + ", Col: " + col + ", Weapons: " + weapons.toString() + ", Shields: " +  shields.toString()+"\n";
+        return "Name: " + getName() +  ", Intelligence: " + getIntelligence() +  ", Strength: " + getStrength() +
+                ", Health: " + getHealth() + ", Row: " + getRow() + ", Col: " + getCol() + ", Weapons: " + weapons.toString() + ", Shields: " +  shields.toString()+"\n";
     }
 
     //Proxima practica
@@ -163,7 +179,7 @@ public class Player {
         return newShield;
     }
 
-    private float sumWeapons(){
+   protected float sumWeapons(){
         float sum=0.0f;
         for(Weapon weapon : weapons) {
             sum += weapon.attack();
@@ -172,7 +188,7 @@ public class Player {
         return sum;
     }
 
-    private float sumShields(){
+    protected float sumShields(){
         float sum=0.0f;
         for(Shield shield : shields){
             sum += shield.protect();
@@ -181,8 +197,8 @@ public class Player {
         return sum;
     }
 
-    private float defensiveEnergy(){
-        return intelligence+sumShields();
+    protected float defensiveEnergy(){
+        return getIntelligence()+sumShields();
     }
 
     //Proxima practica
@@ -206,10 +222,6 @@ public class Player {
 
     private void resetHits(){
         consecutiveHits = 0;
-    }
-
-    private void gotWounded(){
-        health--;
     }
 
     private void incConsecutiveHits(){

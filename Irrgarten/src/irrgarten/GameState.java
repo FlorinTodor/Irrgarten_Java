@@ -9,12 +9,12 @@ package irrgarten;
  * @author flo & gabi
  */
 public class GameState {
-    private static String labyrinth;
-    private static String players;
-    private static String monsters;
-    private static int currentPlayer; //(representa el índice del jugador actual)
-    private static boolean winner;
-    private static String log;
+    private  String labyrinth;
+    private  String players;
+    private  String monsters;
+    private int currentPlayer; //(representa el índice del jugador actual)
+    private boolean winner;
+    private  String log;
 
     // Constructor
     public GameState(String labyrinth, String players, String monsters, int currentPlayer, boolean winner, String log) {

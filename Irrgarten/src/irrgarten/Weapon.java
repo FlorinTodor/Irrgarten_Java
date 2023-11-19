@@ -4,45 +4,42 @@ package irrgarten;
  *
  * @author flo & gabi
  */
-public class Weapon {
+public class Weapon extends CombatElement{
     //"Esta clase representa las armas que utiliza el jugador en los ataques durante los combates."
     
     
     /*
     ATRIBUTOS DE LA CLASE WEAPON
     */
-    private float power = 0.0f; //intensidad o fuerza del personaje
-    private int uses = 0; //usos del arma
+
     
     /*
     CONSTRUCTOR
     */
-    public Weapon(float p, int u){
-        power = p;
-        uses = u;
+    public Weapon(float protection, int uses){
+        super(protection,uses);
+
     }
     
     public float attack(){
         /*
         En el caso de que el personaje tenga usos del arma > 0, se decrementa los usos y se devuelve el valor de intensidad que tiene el personaje
         */
-        if (uses > 0){ 
-            uses--;
-            return power;
+        if (getUses() > 0){
+            setUses(getUses()-1);
+            return produceEffect();
         }
         else{
-            return 0;
+            return 0.0f;
         }
     }
     
     public String toString(){
         
-        return "W[Power: " + power+", Uses:" + uses + "]";
+        return "W[Power: " + produceEffect()+", Uses:" + getUses() + "]";
     }
     
-    public boolean discard(){
-        return Dice.discardElement(uses);
-    }
+
     
     
     

@@ -8,34 +8,31 @@ package irrgarten;
  *
  * @author flo & gabi
  */
-public class Shield {
+public class Shield extends CombatElement {
     
     //Esta clase representa los escudos que utiliza el jugador cuando se defiende de un ataque de un monstruo.
     
-    private float protection;
-    private int uses;
+
     
-    public Shield(float p, int u){
-        protection = p;
-        uses = u;
+    public Shield(float protection, int uses){
+        super(protection,uses);
+
     }
 
     public float protect(){
-        if (uses > 0){
-            uses--;
-            return protection;
+        if (getUses() > 0){
+            this.setUses(getUses()-1);
+            return produceEffect();
         }
         else{
-            return 0;
+            return 0.0f;
         }
     }
-    
+
     public String toString(){
         
-        return "S[Protection: " + protection+ ",Uses: " + uses + "]";
+        return "S[Protection: " + produceEffect()+ ",Uses: " + getUses() + "]";
     }
     
-    public boolean discard(){
-        return Dice.discardElement(uses);
-    }
+
 }

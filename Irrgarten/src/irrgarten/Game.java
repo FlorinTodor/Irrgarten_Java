@@ -194,6 +194,7 @@ public class Game {
 
 		if(resurrect){
 			currentPlayer.resurrect();
+
 			logResurrected();
 		}
 		else{
