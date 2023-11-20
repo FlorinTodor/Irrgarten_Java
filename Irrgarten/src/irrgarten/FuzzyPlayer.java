@@ -9,7 +9,8 @@ public class FuzzyPlayer extends Player{
 
     @Override
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
-        return Dice.nextStep(direction,validMoves,getIntelligence());
+        Directions movimientoComoUnPlayer = super.move(direction,validMoves);
+        return Dice.nextStep(movimientoComoUnPlayer,validMoves,getIntelligence());
     }
 
     @Override
