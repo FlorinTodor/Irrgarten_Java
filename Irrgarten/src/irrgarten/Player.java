@@ -12,7 +12,7 @@ public class Player extends LabyrinthCharacter{
     ShieldCardDeck shieldCardDeck = new ShieldCardDeck();
     private ArrayList<Weapon> weapons;
     private ArrayList<Shield> shields;
-    private static final int MAX_WEAPONS = 5;
+    private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 3;
     private static final float INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
@@ -118,7 +118,6 @@ public class Player extends LabyrinthCharacter{
         return super.toString() +  "Weapons: " + weapons.toString() + ", Shields: " +  shields.toString()+"\n";
     }
 
-    //Proxima practica
     private void receiveWeapon(Weapon w) {
         for (int i = 0; i < weapons.size(); ++i) {
             Weapon wi = weapons.get(i);
@@ -133,7 +132,6 @@ public class Player extends LabyrinthCharacter{
 
     }
 
-    //Proxima practica
     private void receiveShield(Shield s){
         for (int i=0; i< shields.size();++i){
             Shield si = shields.get(i);

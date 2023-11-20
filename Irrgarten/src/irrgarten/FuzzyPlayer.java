@@ -14,12 +14,12 @@ public class FuzzyPlayer extends Player{
 
     @Override
     public float attack(){
-        return (this.getStrength()+sumWeapons());
+        return Dice.intensity(getStrength()) + sumWeapons();
     }
 
     @Override
     protected float defensiveEnergy(){
-        return this.getIntelligence()+sumShields();
+        return Dice.intensity(getIntelligence())+sumShields();
     }
     @Override
 

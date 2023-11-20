@@ -15,5 +15,4 @@ public class WeaponCardDeck extends CardDeck<Weapon> {
         getCardDeck().add(card);
     }
 
-
 }
