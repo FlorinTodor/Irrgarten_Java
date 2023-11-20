@@ -11,7 +11,7 @@ public class Game {
 	private ArrayList<Monster> monsters = new ArrayList<Monster>();
 	private ArrayList<Player> players = new ArrayList<Player>();
 	private Player currentPlayer = new Player('0',Dice.randomIntelligence(), Dice.randomStrength());
-	private Labyrinth labyrinth = new Labyrinth(10,20,5,5);
+	private Labyrinth labyrinth = new Labyrinth(9,15,7,15);
 	private static final int MAX_ROUNDS = 10;
 	private int currentPlayerIndex;
 	private String log;
@@ -43,6 +43,7 @@ public class Game {
 		this.log = "";
 		boolean dead = currentPlayer.dead();
 
+
 		if(!dead){
 			Directions direction = actualDirection(preferredDirection);
 
@@ -62,6 +63,7 @@ public class Game {
 		}
 		else{
 			manageResurrection();
+
 		}
 
 		boolean endGame = finished();
@@ -189,10 +191,10 @@ public class Game {
 			logMonsterWon();
 		}
 	}
-	private void replaceWithFuzzyPlayer(Player originalPlayer, FuzzyPlayer newFuzzyPlayer) {
-		int playerIndex = players.indexOf(originalPlayer);
+	private void replaceWithFuzzyPlayer(FuzzyPlayer newFuzzyPlayer) {
+		int playerIndex = currentPlayerIndex;
 		if (playerIndex != -1) {
-			players.set(playerIndex, newFuzzyPlayer);
+			this.players.set(playerIndex, newFuzzyPlayer);
 			currentPlayer = newFuzzyPlayer;
 		}
 	}
@@ -202,7 +204,7 @@ public class Game {
 		if(resurrect){
 			currentPlayer.resurrect();
 			FuzzyPlayer fuzzyPlayer = new FuzzyPlayer(this.currentPlayer); //COpia los valores
-			replaceWithFuzzyPlayer(this.currentPlayer,fuzzyPlayer); //COlocamos en currentPLayer el fuzzyPlayer
+			replaceWithFuzzyPlayer(fuzzyPlayer); //COlocamos en currentPLayer el fuzzyPlayer
 			logResurrected();
 		}
 		else{

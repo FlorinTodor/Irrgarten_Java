@@ -14,7 +14,7 @@ public class Player extends LabyrinthCharacter{
     private ArrayList<Shield> shields;
     private static final int MAX_WEAPONS = 2;
     private static final int MAX_SHIELDS = 3;
-    private static final float INITIAL_HEALTH = 10;
+    private static final int INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
 
     private char number;

@@ -78,6 +78,7 @@ public class Labyrinth {
 		this.exitCol = exitCol;
 	}
 
+
 	public void spreadPlayers(ArrayList<Player> players) {
 		for(int i=0; i<players.size(); i++){
 			Player p = players.get(i);
@@ -132,7 +133,7 @@ public class Labyrinth {
 		int oldCol = player.getCol();
 
 		int[] newPos = dir2Pos(oldRow, oldCol, direction);
-
+		players[oldRow][oldCol] = player; //PARA ACTUALIZAR LA POS DE FuzzyPlayer
 		Monster monster = putPlayer2D(oldRow, oldCol, newPos[ROW], newPos[COL], player);
 
 		return monster;
@@ -232,7 +233,6 @@ public class Labyrinth {
 	estado correcto.
 	 */
 	private void updateOldPos(int row, int col) {
-
 		if (posOK(row, col)) {
 			if (combatPos(row,col)) {
 				// Si el estado de la casilla era de combate, cambia a estado de monstruo
