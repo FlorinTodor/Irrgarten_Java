@@ -21,12 +21,6 @@ public class Player extends LabyrinthCharacter{
 
     private int consecutiveHits = 0;
 
-    public static int getMaxWeapons(){
-        return MAX_WEAPONS;
-    }
-    public static int getMaxShields(){
-        return MAX_SHIELDS;
-    }
 
     public Player(char number, float intelligence, float strength)  {
         super("Player #" + number,intelligence,strength,INITIAL_HEALTH);
@@ -94,16 +88,17 @@ public class Player extends LabyrinthCharacter{
     }
 
     public void  receiveReward(){
-       int wReward = Dice.weaponsReward();
-       int sReward = Dice.shieldsReward();
 
-       for(int i=0; i<wReward; ++i){
-           Weapon wnew = newWeapon();
-           receiveWeapon(wnew);
-       }
-        for(int i=0; i<sReward; ++i){
-            Shield snew = newShield();
-            receiveShield(snew);
+        weaponCardDeck.addCards();
+        for (int i=0; i< weaponCardDeck.getCardDeck().size(); ++i){
+            weapons.add(i,weaponCardDeck.getCardDeck().get(i));
+            receiveWeapon(weaponCardDeck.getCardDeck().get(i));
+
+        }
+        shieldCardDeck.addCards();
+        for (int i=0; i< shieldCardDeck.getCardDeck().size(); ++i){
+            shields.add(i,shieldCardDeck.getCardDeck().get(i));
+            receiveShield(shieldCardDeck.getCardDeck().get(i));
         }
 
         int extraHealth = Dice.healthReward();
