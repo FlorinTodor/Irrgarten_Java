@@ -13,6 +13,8 @@ public abstract class LabyrinthCharacter {
         this.intelligence = intelligence;
         this.strength = strength;
         this.health = health;
+        row = 0;
+        col = 0;
     }
 
     public LabyrinthCharacter(LabyrinthCharacter other){
@@ -20,6 +22,9 @@ public abstract class LabyrinthCharacter {
         this.intelligence = other.intelligence;
         this.strength = other.strength;
         this.health = other.health;
+        this.row = other.row;
+        this.col = other.col;
+
     }
 
     public boolean dead(){
@@ -55,7 +60,10 @@ public abstract class LabyrinthCharacter {
         this.col = col;
     }
 
-    public abstract String toString();
+    public String toString(){
+        return "Name: " + getName() + ", Intelligence: " + getIntelligence() + ", Strength: " + getStrength() +
+                ", Health: " + getHealth() + ", Row: " + getRow() + ", Col: " + getCol() + "\n";
+    }
 
     protected void gotWounded(){
         health--;

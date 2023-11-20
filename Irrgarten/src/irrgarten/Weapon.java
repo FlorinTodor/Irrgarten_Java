@@ -33,7 +33,7 @@ public class Weapon extends CombatElement{
             return 0.0f;
         }
     }
-    
+    @Override
     public String toString(){
         
         return "W[Power: " + produceEffect()+", Uses:" + getUses() + "]";

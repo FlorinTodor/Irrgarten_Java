@@ -11,12 +11,12 @@ public class Monster extends LabyrinthCharacter {
 	public Monster(String name, float intelligence, float strength) {
 		super(name, intelligence, strength, INITIAL_HEALTH);
 	}
-
+	@Override
 	public float attack() {
 		return Dice.intensity(getStrength());
 	}
 
-	//Proxima practica
+	@Override
 	public boolean defend(float receivedAttack) {
 		boolean isDead = dead();
 		if (!isDead) {
@@ -28,10 +28,5 @@ public class Monster extends LabyrinthCharacter {
 			}
 		}
 		return isDead;
-	}
-
-	public String toString() {
-		return "Name: " + getName() + ", Intelligence: " + getIntelligence() + ", Strength: " + getStrength() +
-				", Health: " + getHealth() + ", Row: " + getRow() + ", Col: " + getCol() + "\n";
 	}
 }

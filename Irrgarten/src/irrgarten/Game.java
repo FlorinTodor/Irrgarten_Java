@@ -82,6 +82,7 @@ public class Game {
 		// Configura el laberinto personalizado
 		// Nota: Estoy asumiendo que las dimensiones son 8x15
 		// Area
+
 		labyrinth.addBlock(Orientation.HORIZONTAL, 0, 0, 15); // Fila 0
 		labyrinth.addBlock(Orientation.VERTICAL,1, 0, 7); // Columna 0
 		labyrinth.addBlock(Orientation.HORIZONTAL, 8, 0, 15); // Fila 7
@@ -188,13 +189,20 @@ public class Game {
 			logMonsterWon();
 		}
 	}
-
+	private void replaceWithFuzzyPlayer(Player originalPlayer, FuzzyPlayer newFuzzyPlayer) {
+		int playerIndex = players.indexOf(originalPlayer);
+		if (playerIndex != -1) {
+			players.set(playerIndex, newFuzzyPlayer);
+			currentPlayer = newFuzzyPlayer;
+		}
+	}
 	private void manageResurrection() {
 		boolean resurrect = Dice.resurrectPlayer();
 
 		if(resurrect){
 			currentPlayer.resurrect();
-
+			FuzzyPlayer fuzzyPlayer = new FuzzyPlayer(this.currentPlayer); //COpia los valores
+			replaceWithFuzzyPlayer(this.currentPlayer,fuzzyPlayer); //COlocamos en currentPLayer el fuzzyPlayer
 			logResurrected();
 		}
 		else{
@@ -211,7 +219,7 @@ public class Game {
 	}
 
 	private void logResurrected() {
-		log += "El jugador " + currentPlayer.getNumber() + " ha resucitado.\n";
+		log += "El jugador " + currentPlayer.getNumber() + " ha resucitado, pero actua como un FuzzyPlayer.\n";
 	}
 
 	private void logPlayerSkipTurn() {

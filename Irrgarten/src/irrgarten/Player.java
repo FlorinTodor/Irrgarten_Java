@@ -14,32 +14,35 @@ public class Player extends LabyrinthCharacter{
     private ArrayList<Shield> shields;
     private static final int MAX_WEAPONS = 5;
     private static final int MAX_SHIELDS = 3;
-    private static final int INITIAL_HEALTH = 10;
+    private static final float INITIAL_HEALTH = 10;
     private static final int HITS2LOSE = 3;
 
     private char number;
 
     private int consecutiveHits = 0;
 
+    public static int getMaxWeapons(){
+        return MAX_WEAPONS;
+    }
+    public static int getMaxShields(){
+        return MAX_SHIELDS;
+    }
+
     public Player(char number, float intelligence, float strength)  {
         super("Player #" + number,intelligence,strength,INITIAL_HEALTH);
         this.number = number;
         weapons = new ArrayList<Weapon>(MAX_WEAPONS);
         shields = new ArrayList<Shield>(MAX_SHIELDS);
-        setRow(0);
-        setCol(0);
+        setPos(0,0);
 
     }
 
     public Player(Player other) {
-        super(other.getName(),other.getIntelligence(),other.getStrength(),other.getHealth());
+        super(other);
         this.number = other.number;
-
-        this.weapons = new ArrayList<>(other.weapons);  // Copia profunda de la lista de armas
-        this.shields = new ArrayList<>(other.shields);  // Copia profunda de la lista de escudos
-        setRow(other.getRow());
-        setCol(other.getCol());
-        // Puedes necesitar realizar copias profundas de las barajas de cartas si es necesario
+        this.weapons = other.weapons;
+        this.shields = other.shields;
+        setPos(other.getRow(),other.getCol());
         this.weaponCardDeck = other.weaponCardDeck;
         this.shieldCardDeck = other.shieldCardDeck;
     }
@@ -49,6 +52,7 @@ public class Player extends LabyrinthCharacter{
         shields.clear();
         setHealth(INITIAL_HEALTH);
         consecutiveHits = 0;
+
     }
 
     public char getNumber() {
@@ -80,11 +84,11 @@ public class Player extends LabyrinthCharacter{
             return direction;
         }
     }
-
+    @Override
     public float attack(){
         return (getStrength()+sumWeapons());
     }
-
+    @Override
     public boolean defend(float receivedAttack){
         return manageHit(receivedAttack);
     }
@@ -109,9 +113,9 @@ public class Player extends LabyrinthCharacter{
 
     }
 
+    @Override
     public String toString(){
-        return "Name: " + getName() +  ", Intelligence: " + getIntelligence() +  ", Strength: " + getStrength() +
-                ", Health: " + getHealth() + ", Row: " + getRow() + ", Col: " + getCol() + ", Weapons: " + weapons.toString() + ", Shields: " +  shields.toString()+"\n";
+        return super.toString() +  "Weapons: " + weapons.toString() + ", Shields: " +  shields.toString()+"\n";
     }
 
     //Proxima practica

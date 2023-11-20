@@ -28,7 +28,7 @@ public class Shield extends CombatElement {
             return 0.0f;
         }
     }
-
+    @Override
     public String toString(){
         
         return "S[Protection: " + produceEffect()+ ",Uses: " + getUses() + "]";
