@@ -17,6 +17,5 @@ public class Main{
         // Iniciar el juego a través del controlador
         controller.play();
 
-
     }
 }

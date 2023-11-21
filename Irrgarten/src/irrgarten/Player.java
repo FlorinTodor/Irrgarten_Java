@@ -21,12 +21,6 @@ public class Player extends LabyrinthCharacter{
 
     private int consecutiveHits = 0;
 
-    public static int getMaxWeapons(){
-        return MAX_WEAPONS;
-    }
-    public static int getMaxShields(){
-        return MAX_SHIELDS;
-    }
 
     public Player(char number, float intelligence, float strength)  {
         super("Player #" + number,intelligence,strength,INITIAL_HEALTH);
@@ -71,7 +65,6 @@ public class Player extends LabyrinthCharacter{
 
     public void setShields(ArrayList<Shield> weapons){ this.shields = new ArrayList<>(shields);}
 
-
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
         int size = validMoves.size();
         boolean contained = validMoves.contains(direction);
@@ -84,6 +77,7 @@ public class Player extends LabyrinthCharacter{
             return direction;
         }
     }
+
     @Override
     public float attack(){
         return (getStrength()+sumWeapons());
@@ -94,16 +88,17 @@ public class Player extends LabyrinthCharacter{
     }
 
     public void  receiveReward(){
-       int wReward = Dice.weaponsReward();
-       int sReward = Dice.shieldsReward();
 
-       for(int i=0; i<wReward; ++i){
-           Weapon wnew = newWeapon();
-           receiveWeapon(wnew);
-       }
-        for(int i=0; i<sReward; ++i){
-            Shield snew = newShield();
-            receiveShield(snew);
+        weaponCardDeck.addCards();
+        for (int i=0; i< weaponCardDeck.getCardDeck().size(); ++i){
+            weapons.add(i,weaponCardDeck.getCardDeck().get(i));
+            receiveWeapon(weaponCardDeck.getCardDeck().get(i));
+
+        }
+        shieldCardDeck.addCards();
+        for (int i=0; i< shieldCardDeck.getCardDeck().size(); ++i){
+            shields.add(i,shieldCardDeck.getCardDeck().get(i));
+            receiveShield(shieldCardDeck.getCardDeck().get(i));
         }
 
         int extraHealth = Dice.healthReward();
@@ -147,11 +142,10 @@ public class Player extends LabyrinthCharacter{
 
     private Weapon newWeapon(){
         //Almacenamos el poder y el numero de uses del nuevo arma
-        float power = Dice.weaponPower();
-        int uses = Dice.usesLeft();
+
 
         //Creamos un nuevo arma
-        Weapon newWeapon = new Weapon(power,uses);
+        Weapon newWeapon = weaponCardDeck.nextCard();
 
         //Guardamos el nuevo arma
         weapons.add(newWeapon);
@@ -161,11 +155,10 @@ public class Player extends LabyrinthCharacter{
 
     private Shield newShield(){
         //Almacenamos la proteccion y el numero de uses del nuevo escudo
-        float protection = Dice.shieldPower();
-        int uses = Dice.usesLeft();
+
 
         //Creamos un nuevo escudo
-        Shield newShield = new Shield(protection,uses);
+        Shield newShield = shieldCardDeck.nextCard();
 
         //Guardamos el nuevo escudo
         shields.add(newShield);
