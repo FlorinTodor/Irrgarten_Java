@@ -16,8 +16,8 @@ public class Weapon extends CombatElement{
     /*
     CONSTRUCTOR
     */
-    public Weapon(float protection, int uses){
-        super(protection,uses);
+    public Weapon(float power, int uses){
+        super(power,uses);
 
     }
     
