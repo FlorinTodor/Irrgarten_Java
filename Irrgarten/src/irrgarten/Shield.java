@@ -11,9 +11,7 @@ package irrgarten;
 public class Shield extends CombatElement {
     
     //Esta clase representa los escudos que utiliza el jugador cuando se defiende de un ataque de un monstruo.
-    
 
-    
     public Shield(float protection, int uses){
         super(protection,uses);
 
@@ -31,7 +29,7 @@ public class Shield extends CombatElement {
     @Override
     public String toString(){
         
-        return "S[Protection: " + produceEffect()+ ",Uses: " + getUses() + "]";
+        return "S" + super.toString();
     }
     
 

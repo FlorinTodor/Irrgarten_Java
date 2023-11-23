@@ -14,8 +14,6 @@ public class FuzzyPlayer extends Player{
         return movimientoComoUnFuzzyPlayer;
     }
 
-
-
     @Override
     public float attack(){
         return Dice.intensity(getStrength()) + sumWeapons();

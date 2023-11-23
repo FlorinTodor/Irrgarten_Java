@@ -128,12 +128,15 @@ public class Labyrinth {
 		}
 	}
 
+	public void setPlayer(int row, int col, Player player){
+		players[row][col] = player;
+	}
+
 	public Monster putPlayer(Directions direction, Player player) {
 		int oldRow = player.getRow();
 		int oldCol = player.getCol();
 
 		int[] newPos = dir2Pos(oldRow, oldCol, direction);
-		players[oldRow][oldCol] = player; //PARA ACTUALIZAR LA POS DE FuzzyPlayer
 		Monster monster = putPlayer2D(oldRow, oldCol, newPos[ROW], newPos[COL], player);
 
 		return monster;
