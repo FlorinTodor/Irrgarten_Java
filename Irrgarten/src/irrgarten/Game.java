@@ -196,6 +196,7 @@ public class Game {
 		if (playerIndex != -1) {
 			this.players.set(playerIndex, newFuzzyPlayer);
 			currentPlayer = newFuzzyPlayer;
+			labyrinth.setPlayer(currentPlayer.getRow(),currentPlayer.getCol(),currentPlayer);
 		}
 	}
 	private void manageResurrection() {

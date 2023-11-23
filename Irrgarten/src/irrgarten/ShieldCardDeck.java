@@ -13,10 +13,5 @@ public class ShieldCardDeck extends CardDeck<Shield> {
         }
     }
 
-    @Override
-    protected void addCard(Shield card) {
-        getCardDeck().add(card);
-    }
-
 }
 

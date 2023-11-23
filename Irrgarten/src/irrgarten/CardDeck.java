@@ -12,7 +12,9 @@ public abstract class CardDeck<T> {
 
         protected abstract void addCards();
 
-        protected abstract void addCard(T card);
+        protected void addCard(T card){
+                this.cardDeck.add(card);
+        }
 
         public  T nextCard(){
                 if (cardDeck.isEmpty()) {

@@ -1,6 +1,6 @@
 package irrgarten;
 
-abstract class CombatElement {
+public abstract class CombatElement {
 
     private float effect;
     private int uses;
@@ -25,5 +25,7 @@ abstract class CombatElement {
         return Dice.discardElement(uses);
     }
 
-    public abstract String toString();
+    public  String toString(){
+       return  "[Effect: " + effect +", Uses:" + uses+ "]";
+    }
 }

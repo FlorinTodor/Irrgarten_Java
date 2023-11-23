@@ -71,5 +71,5 @@ public abstract class LabyrinthCharacter {
 
     public abstract float attack();
 
-    public abstract boolean defend(float attack);
+    public abstract boolean defend(float receivedAttack);
 }

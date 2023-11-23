@@ -28,6 +28,8 @@ public class Player extends LabyrinthCharacter{
         weapons = new ArrayList<Weapon>(MAX_WEAPONS);
         shields = new ArrayList<Shield>(MAX_SHIELDS);
         setPos(0,0);
+        this.weaponCardDeck = new WeaponCardDeck();
+        this.shieldCardDeck = new ShieldCardDeck();
 
     }
 
@@ -36,7 +38,7 @@ public class Player extends LabyrinthCharacter{
         this.number = other.number;
         this.weapons = other.weapons;
         this.shields = other.shields;
-        setPos(other.getRow(),other.getCol());
+        setPos(other.getRow(),other.getCol()); //COpiamos la posicions
         this.weaponCardDeck = other.weaponCardDeck;
         this.shieldCardDeck = other.shieldCardDeck;
     }
