@@ -11,7 +11,13 @@ public abstract class CombatElement {
     }
 
     protected float produceEffect() {
-        return this.effect;
+        if (uses > 0){
+            uses --;
+            return produceEffect();
+        }
+        else{
+            return 0.0f;
+        }
     }
 
     public int getUses(){

@@ -22,16 +22,7 @@ public class Weapon extends CombatElement{
     }
     
     public float attack(){
-        /*
-        En el caso de que el personaje tenga usos del arma > 0, se decrementa los usos y se devuelve el valor de intensidad que tiene el personaje
-        */
-        if (getUses() > 0){
-            setUses(getUses()-1);
-            return produceEffect();
-        }
-        else{
-            return 0.0f;
-        }
+        return super.produceEffect();
     }
     @Override
     public String toString(){
