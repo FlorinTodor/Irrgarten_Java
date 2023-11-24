@@ -18,7 +18,7 @@ public class Shield extends CombatElement {
     }
 
     public float protect(){
-        return super.produceEffect();
+        return produceEffect();
     }
     @Override
     public String toString(){

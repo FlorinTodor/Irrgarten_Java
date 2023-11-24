@@ -22,7 +22,7 @@ public class Weapon extends CombatElement{
     }
     
     public float attack(){
-        return super.produceEffect();
+        return produceEffect();
     }
     @Override
     public String toString(){
