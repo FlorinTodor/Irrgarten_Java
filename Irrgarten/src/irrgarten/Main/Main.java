@@ -8,7 +8,7 @@ import irrgarten.ShieldCardDeck;
 public class Main{
     public static void main(String[] args) {
 
-        int nplayer = 2;
+        int nplayer = 1;
         // Crear instancias del juego, la vista y el controlador
         Game game = new Game(nplayer);
         TextUI textUI = new TextUI();

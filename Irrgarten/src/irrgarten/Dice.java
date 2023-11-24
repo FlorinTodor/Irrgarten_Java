@@ -117,11 +117,13 @@ public class Dice {
     }
 
     public static Directions nextStep(Directions preference, ArrayList<Directions> validMoves, float intelligence){
-        if(randomIntelligence() < intelligence){
+        float prob = intelligence / MAX_INTELLIGENCE;
+
+        if(generator.nextFloat() < prob){
             return preference;
         }
         else{
-            int randomIndex = randomPos(validMoves.size());
+            int randomIndex = generator.nextInt(validMoves.size());
             return validMoves.get(randomIndex);
         }
     }

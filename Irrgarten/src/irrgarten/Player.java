@@ -93,13 +93,18 @@ public class Player extends LabyrinthCharacter{
 
         weaponCardDeck.addCards();
         for (int i=0; i< weaponCardDeck.getCardDeck().size(); ++i){
-            weapons.add(i,weaponCardDeck.getCardDeck().get(i));
+            if ( weapons.size() <= Dice.weaponsReward()){
+                weapons.add(i,weaponCardDeck.getCardDeck().get(i));
+            }
             receiveWeapon(weaponCardDeck.getCardDeck().get(i));
 
         }
         shieldCardDeck.addCards();
         for (int i=0; i< shieldCardDeck.getCardDeck().size(); ++i){
-            shields.add(i,shieldCardDeck.getCardDeck().get(i));
+            if (shields.size() < Dice.shieldsReward()){
+                shields.add(i,shieldCardDeck.getCardDeck().get(i));
+            }
+
             receiveShield(shieldCardDeck.getCardDeck().get(i));
         }
 
