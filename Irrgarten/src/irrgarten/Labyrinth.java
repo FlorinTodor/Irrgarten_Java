@@ -42,42 +42,13 @@ public class Labyrinth {
 			}
 	}
 
-	// Getter y Setter para la variable nRows
-	public int getNRows() {
-		return nRows;
-	}
-
-	public void setNRows(int nRows) {
-		this.nRows = nRows;
-	}
-
-	// Getter y Setter para la variable nCols
-	public int getNCols() {
-		return nCols;
-	}
-
-	public void setNCols(int nCols) {
-		this.nCols = nCols;
-	}
-
-	// Getter y Setter para la variable exitRow
-	public int getExitRow() {
-		return exitRow;
-	}
-
 	public void setExitRow(int exitRow) {
 		this.exitRow = exitRow;
-	}
-
-	// Getter y Setter para la variable exitCol
-	public int getExitCol() {
-		return exitCol;
 	}
 
 	public void setExitCol(int exitCol) {
 		this.exitCol = exitCol;
 	}
-
 
 	public void spreadPlayers(ArrayList<Player> players) {
 		for(int i=0; i<players.size(); i++){

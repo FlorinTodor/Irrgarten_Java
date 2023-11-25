@@ -14,7 +14,6 @@ public class Shield extends CombatElement {
 
     public Shield(float protection, int uses){
         super(protection,uses);
-
     }
 
     public float protect(){

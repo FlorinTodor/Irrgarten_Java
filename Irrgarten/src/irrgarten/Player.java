@@ -48,24 +48,12 @@ public class Player extends LabyrinthCharacter{
         shields.clear();
         setHealth(INITIAL_HEALTH);
         consecutiveHits = 0;
-
     }
 
     public char getNumber() {
         return number;
     }
 
-    public int getConsecutiveHits() { return consecutiveHits;}
-
-    public void setConsecutiveHits(int consecutiveHits) { this.consecutiveHits = consecutiveHits;}
-
-    public ArrayList<Weapon> getWeapons() { return new ArrayList<>(weapons);}
-
-    public void setWeapons(ArrayList<Weapon> weapons){ this.weapons = new ArrayList<>(weapons);}
-
-    public ArrayList<Shield> getShields() { return new ArrayList<>(shields);}
-
-    public void setShields(ArrayList<Shield> weapons){ this.shields = new ArrayList<>(shields);}
 
     public Directions move(Directions direction, ArrayList<Directions> validMoves){
         int size = validMoves.size();
@@ -84,6 +72,7 @@ public class Player extends LabyrinthCharacter{
     public float attack(){
         return (getStrength()+sumWeapons());
     }
+
     @Override
     public boolean defend(float receivedAttack){
         return manageHit(receivedAttack);

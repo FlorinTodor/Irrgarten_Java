@@ -31,9 +31,6 @@ public class Game {
 		configureLabyrinth();
 		labyrinth.spreadPlayers(players);
 	}
-	public static int getMaxRounds() {
-		return MAX_ROUNDS;
-	}
 
 	public boolean finished() {
 		return labyrinth.haveAWinner();
