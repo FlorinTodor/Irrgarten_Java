@@ -56,7 +56,7 @@ public class Labyrinth {
 
 			int[] pos = randomEmptyPos();
 
-			putPlayer2D(-1,-1, 7, 11, p);
+			putPlayer2D(-1,-1, pos[ROW], pos[COL], p);
 		}
 	}
 
