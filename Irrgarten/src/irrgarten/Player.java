@@ -98,15 +98,14 @@ public class Player extends LabyrinthCharacter{
         }
 
         int extraHealth = Dice.healthReward();
-        float vida = getHealth();
-        vida += extraHealth;
-        setHealth(vida);
+        extraHealth += getHealth();
+        setHealth(extraHealth);
 
     }
 
     @Override
     public String toString(){
-        return super.toString() +  "Weapons: " + weapons.toString() + ", Shields: " +  shields.toString()+"\n";
+        return super.toString() +  "Weapons: " + weapons.toString() + "\n"+ "Shields: " +  shields.toString()+"\n";
     }
 
     private void receiveWeapon(Weapon w) {

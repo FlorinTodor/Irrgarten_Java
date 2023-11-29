@@ -29,25 +29,15 @@ public abstract class LabyrinthCharacter {
 
     public int getRow() { return row;}
 
-    public void setRow(int row) { this.row = row;}
-
     public int getCol() { return col;}
-
-    public void setCol(int col) { this.col = col;}
 
     protected float getIntelligence() { return intelligence; }
 
-    public void setIntelligence(float intelligence){this.intelligence = intelligence;}
-
     protected float getStrength() { return strength;}
-
-    public void setStrength(float strength){this.strength = strength;}
 
     protected float getHealth() { return health;}
 
     protected void setHealth(float health) { this.health = health;}
-
-    public void setName(String name) { this.name = name;}
 
     public String getName() { return name;}
 

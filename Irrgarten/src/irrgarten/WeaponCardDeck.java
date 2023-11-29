@@ -10,6 +10,4 @@ public class WeaponCardDeck extends CardDeck<Weapon> {
             addCard(weapon);
         }
     }
-
-
 }
